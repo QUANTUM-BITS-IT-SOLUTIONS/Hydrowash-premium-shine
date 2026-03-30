@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Ultra Premium Dark Theme - Brighter & More Dynamic */
+    --background: 220 20% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Electric Cyan - Primary brand color (BRIGHTER) */
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 20% 6%;
+
+    /* Secondary - Deep navy */
+    --secondary: 220 30% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Muted */
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Hot Magenta Accent */
+    --accent: 320 100% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom vibrant tokens */
+    --gold: 45 100% 55%;
+    --gold-light: 45 100% 65%;
+    --gold-dark: 45 90% 40%;
+    --electric-blue: 200 100% 55%;
+    --electric-blue-glow: 200 100% 65%;
+    --electric: 180 100% 50%;
+    --neon-pink: 320 100% 60%;
+    --neon-purple: 270 100% 65%;
+    --charcoal: 220 20% 8%;
+    --charcoal-light: 220 20% 14%;
+    --platinum: 220 10% 85%;
+
+    /* Vibrant Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50%), hsl(200 100% 55%));
+    --gradient-accent: linear-gradient(135deg, hsl(320 100% 60%), hsl(270 100% 65%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 55%), hsl(45 100% 70%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 20% 6%), hsl(220 20% 10%));
+    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.12), hsla(0, 0%, 100%, 0.05));
+    --gradient-hero: linear-gradient(135deg, hsl(180 100% 50% / 0.2), hsl(320 100% 60% / 0.2));
+
+    /* Vibrant Shadows */
+    --shadow-primary: 0 0 50px -10px hsl(180 100% 50% / 0.5);
+    --shadow-accent: 0 0 50px -10px hsl(320 100% 60% / 0.5);
+    --shadow-gold: 0 0 40px -10px hsl(45 100% 55% / 0.5);
+    --shadow-glass: 0 8px 32px 0 hsla(0, 0%, 0%, 0.4);
+    --shadow-elevated: 0 25px 50px -12px hsla(0, 0%, 0%, 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card - enhanced */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500;
+  }
+
+  .glass-card-hover:hover {
+    @apply bg-white/10 border-white/20;
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-8px);
+  }
+
+  /* Vibrant gradient text */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  /* Primary border glow */
+  .border-primary-glow {
+    @apply border border-primary/50;
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Accent border glow */
+  .border-accent-glow {
+    @apply border border-accent/50;
+    box-shadow: var(--shadow-accent);
+  }
+
+  /* Premium button - vibrant gradient */
+  .btn-premium {
+    @apply relative px-8 py-4 font-semibold text-sm uppercase tracking-widest overflow-hidden;
+    @apply text-primary-foreground rounded-full transition-all duration-300;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn-premium:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 60px -10px hsl(180 100% 50% / 0.7);
+  }
+
+  .btn-premium::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/30 to-transparent;
+    @apply translate-x-[-100%] transition-transform duration-500;
+  }
+
+  .btn-premium:hover::before {
+    @apply translate-x-[100%];
+  }
+
+  /* Ghost button - vibrant border */
+  .btn-ghost-premium {
+    @apply px-8 py-4 font-semibold text-sm uppercase tracking-widest;
+    @apply bg-transparent border-2 border-primary/50 text-foreground;
+    @apply rounded-full transition-all duration-300;
+  }
+
+  .btn-ghost-premium:hover {
+    @apply bg-primary/10 border-primary text-primary;
+    box-shadow: var(--shadow-primary);
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  /* Section subheading */
+  .section-subheading {
+    @apply text-lg md:text-xl text-muted-foreground max-w-2xl;
+  }
+
+  /* Animated underline - brighter */
+  .animated-underline {
+    @apply relative;
+  }
+
+  .animated-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Star rating */
+  .star-gold {
+    @apply text-[hsl(45,100%,55%)];
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Vibrant glow effects */
+  .glow-primary {
+    filter: drop-shadow(0 0 25px hsl(180 100% 50% / 0.6));
+  }
+
+  .glow-accent {
+    filter: drop-shadow(0 0 25px hsl(320 100% 60% / 0.6));
+  }
+
+  .glow-gold {
+    filter: drop-shadow(0 0 25px hsl(45 100% 55% / 0.6));
+  }
+
+  /* 3D perspective utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Premium text shadow */
+  .text-shadow-glow {
+    text-shadow: 0 0 40px hsl(180 100% 50% / 0.5);
+  }
+
+  /* Cursor styles for interactive elements */
+  .cursor-magnetic {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(180 100% 50% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 50px hsl(180 100% 50% / 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scroll-indicator {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(180, 100%, 50%, 0.15) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
